@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script> 
+        // ЗАДАНИЕ 1
+        alert('Задание 1. Смотрите код');
+        /*
+        var a = 1, b = 1, c, d;
+        c = ++a; alert(c);        // 2  ++ это инкремент (префиксная форма)
+        d = b++; alert(d);        // 1  ++ это инкремент (постфиксная форма)
+        c = (2 + ++a); alert(c);  // 5 = 2 + 3. 3 это результат ++a (префиксная форма)
+        d = (2 + b++); alert(d);  // 4 = 2 + 2. 2 это результат b++ (постфиксная форма)
+        alert(a);                 // 3 - выводится a
+        alert(b);                 // 3 - выводится b
+        */
+        // ЗАДАНИЕ 2
+        alert('Задание 2. Смотрите код');
+        /*
+        var a = 2;
+        var x = 1 + (a *= 2); // х = 5. выражение (a *= 2) === выражению (+ a * 2)        
+        */
+        // ЗАДАНИЕ 3
+
+        alert('Задание 3: работа с 2мя числами с помощью if\n   если a и b положительные, вывести их разность;\n   если а и b отрицательные, вывести их произведение;\n   если а и b разных знаков, вывести их сумму;');
+        const a = +prompt('Задание 3. Введите первое любое число');
+        const b = +prompt('Задание 3. Введите второе любое число');
+
+        if (a < 0 && b < 0) {
+            alert(a+' и '+b+' отрицательные числа и их произведение = '+(a * b));
+        } else if (a >= 0 && b >= 0) {
+            alert(a+' и '+b+' положительные числа и их разность = '+(a - b));
+        } else alert(a+' и '+b+' числа с разными знаками и их сумма = '+(a + b));
+
+        // ЗАДАНИЕ 4   
+
+        alert('Задание 4: Вывод строки от n до 15 с помощью switch');
+        const aaa = +prompt('Задание 4. Введите целое число от 0 до 15 и я выведу последовательность от этого числа до 15');
+
+        switch (aaa) {
+            case 0: alert('0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15'); break;
+            case 1: alert('1 2 3 4 5 6 7 8 9 10 11 12 13 14 15'); break;
+            case 2: alert('2 3 4 5 6 7 8 9 10 11 12 13 14 15'); break;
+            case 3: alert('3 4 5 6 7 8 9 10 11 12 13 14 15'); break;
+            case 4: alert('4 5 6 7 8 9 10 11 12 13 14 15'); break;
+            case 5: alert('5 6 7 8 9 10 11 12 13 14 15'); break;
+            case 6: alert('6 7 8 9 10 11 12 13 14 15'); break;
+            case 7: alert('7 8 9 10 11 12 13 14 15'); break;
+            case 8: alert('8 9 10 11 12 13 14 15'); break;
+            case 9: alert('9 10 11 12 13 14 15'); break;
+            case 10: alert('10 11 12 13 14 15'); break;
+            case 11: alert('11 12 13 14 15'); break;
+            case 12: alert('12 13 14 15'); break;
+            case 13: alert('13 14 15'); break;
+            case 14: alert('14 15'); break;
+            case 15: alert('15'); break;
+        }
+
+        // ЗАДАНИЕ 5   
+        
+        alert('Задание 5: Просто описаны функции. Смотрите код');
+        function summ(a, b) {
+            return (a + b);
+        };
+
+        function subtraction(a, b) {
+            return (a - b);
+        }
+        function multipl(a, b) {
+            return (a * b);
+        }
+        function divide(a, b) {
+            return (a / b);
+        }
+
+        // ЗАДАНИЕ 6
+        
+        alert('Задание 6: сложение, вычитание, произведение и деление двух чисел');
+        const arg1 = +prompt('Задание 6. Введите первое любое число');
+        const arg2 = +prompt('Задание 6. Введите второе любое число');
+
+        function mathOperation(arg1, arg2, operation) {
+
+            switch (operation) {
+                case 'summa': return summ(arg1, arg2); break;
+                case 'minus': return subtraction(arg1, arg2); break;
+                case 'multipl': return multipl(arg1, arg2); break;
+                case 'divide': return divide(arg1, arg2); break;
+            }
+        };
+
+        alert('Сумма чисел ' + arg1 + ' и ' + arg2 + ' = ' + mathOperation(arg1, arg2, 'summa'));
+        alert('Разность чисел ' + arg1 + ' и ' + arg2 + ' = ' + mathOperation(arg1, arg2, 'minus'));
+        alert('Умножение чисел ' + arg1 + ' и ' + arg2 + ' = ' + mathOperation(arg1, arg2, 'multipl'));
+        alert('Частное от деления чисел ' + arg1 + ' и ' + arg2 + ' = ' + mathOperation(arg1, arg2, 'divide'));
+
+        // ЗАДАНИЕ 7
+        
+        alert('Задание 7. Разница межде 0 и null.\n0 - это конкретное значение, а null - это по сути "ничего", т.е. что-то есть, но пока не понятно что.');
+        
+        // ЗАДАНИЕ 8  
+
+        alert('Задание 8: Возведение числа в степень');
+        const val = +prompt('Задание 8. Введите любое число');
+        const pow = +prompt('Задание 8. В какую степень вы хотите ввести это число?');
+
+        function power(val, pow) {
+            if (pow === 1) return val;
+            return val * power(val, pow - 1);
+        }
+
+        alert(val+' в степени '+pow+' = '+power(val, pow));
+
+    </script>
+</body>
+
+</html>
