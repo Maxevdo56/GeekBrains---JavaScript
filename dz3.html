@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>    
+    <script>
+        // задание 1        
+        const simpleNumbers = [];
+        let chislo = 2;
+        let i = 2;        
+
+        while (chislo <= 100) {
+            if (chislo % i == 0 && chislo == i) {
+                simpleNumbers.push(chislo);
+                chislo += 1;
+                i = 2;                
+            } else if (chislo % i == 0 && chislo !== i) {
+                chislo += 1;
+                i = 2;                
+            } else {                
+                i += 1;                
+            }                          
+        };                       
+        console.log(simpleNumbers);        
+        
+        // задание 2
+        
+        const basketArr = [
+            ['Шляпа', 200, 3],
+            ['Пальто', 500, 1],
+            ['Ботинки', 300, 3]
+        ];
+        let sum = 0;
+
+        function countBasketPrice() {
+            for (let j = 0; j < basketArr.length; j++) {
+                sum += basketArr[j][1] * basketArr[j][2];
+            }
+            return sum;
+        }
+        console.log(countBasketPrice()); 
+        
+        // задание 3
+
+        for (let i = 0; i <= 9; console.log(i++)){
+            // здесь пусто
+        };
+
+        // задание 4
+
+        let pyramid = 'x';
+        for (let i = 0; i <= 20; i++){
+            console.log(pyramid)
+            pyramid += 'x';
+        };
+    </script>
+</body>
+
+</html>
