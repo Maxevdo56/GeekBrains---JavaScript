@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // задание 1
+
+        const arr = {
+            units: '',
+            decades: '',
+            hundreds: '',
+        }
+        
+        function numberToObject(num) {
+            if (num > 999) {
+                return console.log('Число больше 999');
+            }
+            arr.units = num % 10;
+            arr.decades = ((num % 100) - (num % 10))/10;
+            arr.hundreds = ((num % 1000) - (num % 100))/100;
+        }
+
+        console.log(numberToObject(1000))
+        
+        // задание 2
+
+        const good_hat = {
+            name: 'Шляпа',
+            price: 200,
+            count: 3,
+        }
+
+        const good_coat = {
+            name: 'Пальто',
+            price: 500,
+            count: 1,
+        }
+
+        const good_boots = {
+            name: 'Ботинки',
+            price: 300,
+            count: 3,
+        }
+
+        const basketArr = [good_hat, good_coat, good_boots]            
+        let sum = 0;
+
+        function countBasketPrice() {
+            for (let i = 0; i < basketArr.length; i++) {
+                sum += basketArr[i].price * basketArr[i].count;
+            }
+            return sum;
+        }
+        console.log(countBasketPrice()); 
+    </script>
+</body>
+</html>
