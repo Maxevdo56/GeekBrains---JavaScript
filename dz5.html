@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess and cart</title>
+    <style>
+        .good {
+            border: 1px solid #000;
+            margin-bottom: 5px;
+            background: #ccc;
+        }
+
+        .catalogGood {
+            border: 1px solid rgb(39, 253, 68);
+            margin-bottom: 10px;
+            background: rgb(200, 253, 195);
+        }
+
+        h2 {
+            font-size: 24px;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .chessRow {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Каталог товаров</h2>
+    <div class="catalog"></div>
+    <h2>Корзина</h2>
+    <div class="cart-list"></div>
+    <button class="cart-btn">Очистить корзину</button>
+    <hr>
+    <script>
+        
+        // задание 1 и 2 - Шахматы
+
+        function chessBoard() {
+            let nameChess = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', ]
+            for (j = 0; j < 9; j++) {
+                for (i = 0; i < 9; i++) {
+                    var chessRow = document.createElement("div");
+                    var clearRow = document.createElement("div");
+                    if (j == 0 || j == 7) {
+                        switch (i) {
+                            case 1:
+                            case 8:
+                                chessRow.innerHTML = 'Лд';
+                                break;
+                            case 2:
+                            case 7:
+                                chessRow.innerHTML = 'Конь';
+                                break;
+                            case 3:
+                            case 6:
+                                chessRow.innerHTML = 'Слн';
+                                break;
+                            case 4:
+                                chessRow.innerHTML = 'Крл';
+                                break;
+                            default:
+                                chessRow.innerHTML = 'Фрз';
+
+                        }
+                    }
+                    if (j == 1 || j == 6) {
+                        chessRow.innerHTML = 'Пшк';
+                    }
+                    chessRow.classList.add('chessRow');
+                    clearRow.style.float = 'left';
+                    document.body.appendChild(chessRow);
+                    document.body.appendChild(clearRow);
+
+                    if ((i !== 0) && ((i + j) % 2 == 0)) {
+                        chessRow.style.backgroundColor = 'lightblue';
+                    }
+                    if (i == 0) {
+                        chessRow.innerHTML = (8 - j);
+                    }
+                    if (j == 8) {
+                        chessRow.style.backgroundColor = 'white';
+                        chessRow.innerHTML = (nameChess[i]);
+                    }
+                }
+                clearRow.style.clear = 'left';
+
+            }
+        }
+
+        chessBoard();
+
+        // задание 3 и 4
+        /*  признаюсь честно - задание 3 для меня оказалось очень сложным 
+            для самостоятельного выполнения. Я взял Ваше решение и просто разобрался в нём.
+            а задание 4 уже сделал на основе разбора 3-го задания.
+            Вроде даже получилось.
+            Пока тяжеловато формировать в голове сущности объектов,
+            хотя понимаю - что с точки зрения программирования это круто
+            и даёт большие возможности для корректного написания кода.
+        */
+        'use strict'
+        // отрисовка элемента корзины
+        const cartItem = {
+            render(good) {
+                return `<div class="good">
+                    <div><b>Наименование</b>: ${good.product_name}</div>
+                    <div><b>Цена за шт.</b>: ${good.price}</div>
+                    <div><b>Количество</b>: ${good.quantity}</div>
+                    <div><b>Стоимость</b>: ${good.quantity * good.price}</div>
+                </div>`;
+            }
+        }
+
+        // отрисовка элемента каталога
+        const catalogItem = {
+            render(good) {
+                return `<div class="catalogGood">
+                    <div><b>id товара</b>: ${good.id_product}</div>
+                    <div><b>Наименование</b>: ${good.product_name}</div>
+                    <div><b>Цена за шт.</b>: ${good.price}</div>                    
+                </div>`;
+            }
+        }
+
+        // сущность товара
+        const product = {
+            catalog: null,
+            catalogItem,
+            goods: [{
+                    id_product: 123,
+                    product_name: 'Ноутбук',
+                    price: 45600,
+                },
+                {
+                    id_product: 456,
+                    product_name: 'Мышка',
+                    price: 1000,
+                },
+                {
+                    id_product: 305,
+                    product_name: 'Клавиатура',
+                    price: 2000,
+                },
+                {
+                    id_product: 999,
+                    product_name: 'Модем 19200 Kbs',
+                    price: 1999,
+                },
+            ],
+
+            init() {
+                this.catalog = document.querySelector('.catalog');
+                this.render();
+            },
+
+            render() {
+                this.goods.forEach(good => {
+                    this.catalog.insertAdjacentHTML('beforeend', this.catalogItem.render(good));
+                });
+            },
+        }
+
+        // сущность корзины
+        const cart = {
+            cartListBlock: null,
+            cartButton: null,
+            cartItem,
+            goods: [{
+                    id_product: 123,
+                    product_name: 'Ноутбук',
+                    price: 45600,
+                    quantity: 1,
+                },
+                {
+                    id_product: 456,
+                    product_name: 'Мышка',
+                    price: 1000,
+                    quantity: 2,
+                },
+                {
+                    id_product: 305,
+                    product_name: 'Клавиатура',
+                    price: 2000,
+                    quantity: 1,
+                },
+            ],
+
+            init() {
+                this.cartListBlock = document.querySelector('.cart-list');
+                this.cartButton = document.querySelector('.cart-btn');
+                this.cartButton.addEventListener('click', this.clearCart.bind(this));
+                this.render();
+            },
+            render() {
+                if (this.goods.length) {
+                    this.goods.forEach(good => {
+                        this.cartListBlock.insertAdjacentHTML('beforeend', this.cartItem.render(good));
+                    });
+                    this.cartListBlock.insertAdjacentHTML('beforeend',
+                        `В корзине ${this.goods.length} позиций(а) стоимостью ${this.getCartPrice()}`);
+                } else {
+                    this.cartListBlock.textContent = 'Корзина пуста';
+                }
+            },
+            getCartPrice() {
+                return this.goods.reduce(function (price, good) {
+                    return price + good.price * good.quantity;
+                }, 0);
+            },
+            clearCart() {
+                this.goods = [];
+                this.render();
+            },
+        };
+
+        product.init();
+        cart.init();
+    </script>
+</body>
+
+</html>
